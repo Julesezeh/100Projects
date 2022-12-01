@@ -1,4 +1,6 @@
 import random
+
+#Set the constants
 OBJECT_PRONOUNS = ['Her', 'Him', 'Them']
 POSSESIVE_PRONOUNS = ['Her', 'His', 'Their']
 PERSONAL_PRONOUNS = ['She', 'He', 'They']
@@ -10,6 +12,7 @@ HOOPERS = ['Steph Curry','Anthony Davis','Anthony Edwards','Ja Morant','Shai Gil
 FOOTBALLERS = ['Cristiano Ronaldo','Neymar JR.','Mbappe','Lionel Messi']
 VERB = ['slapped','punched','stabbed','snubbed','shot']
 
+#create the bait generator functions
 def generate_DontWantYouToKnowCB():
     noun1 = random.choice(NOUNS)
     noun2 = random.choice(NOUNS)
@@ -32,7 +35,6 @@ def generate_wontbelieveCB():
 def generateJobAutomatedHeadline():
     state = random.choice(STATES)
     noun = random.choice(NOUNS)
-
     #refernce this {% block %} periodicallt for logical insights
     i = random.randint(0, 2)
     pronoun1 = POSSESIVE_PRONOUNS[i]
@@ -42,6 +44,13 @@ def generateJobAutomatedHeadline():
     else:
         return f'This {state} {noun} Didn\'t Think Robots Would Take {pronoun1} Job. {pronoun2} Was Wrong.'
     #{% endblock %}
+
+def generateBigCompaniesHateHerHeadline():  
+    pronoun = random.choice(OBJECT_PRONOUNS)
+    state = random.choice(STATES)
+    noun1 = random.choice(NOUNS)
+    noun2 = random.choice(NOUNS)
+    return f'Big Companies Hate {pronoun}! See How This {state} {noun1} Invented a Cheaper {noun2}'
 
 
 def main():
@@ -57,7 +66,7 @@ def main():
             number_of_clickbaits = int(response)
             break
     while len(headlines) != number_of_clickbaits:
-        random_option = random.randint(1,5)
+        random_option = random.randint(1,6)
 
         if random_option == 1:
             headline = generate_DontWantYouToKnowCB()
@@ -67,6 +76,8 @@ def main():
             headline = generate_wontbelieveCB()
         elif random_option == 4:
             headline = generateJobAutomatedHeadline()
+        elif random_option == 5:
+            headline = generateBigCompaniesHateHerHeadline()
         try:
             if headline != headlines[-1]:
                 headlines.append(headline)
