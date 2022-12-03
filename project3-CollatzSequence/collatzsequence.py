@@ -26,7 +26,7 @@ def main():
         else:
             n = n*3+1
         sequence.append(n)
-
+    print(len(sequence))
     for x in sequence:
         print(x,end=',')
 
