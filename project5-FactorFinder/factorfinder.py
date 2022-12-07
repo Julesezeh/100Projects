@@ -16,5 +16,4 @@ if __name__ == "__main__":
         except ValueError:
             print("\nPlease enter a valid positive integer\n")
     results = factor_finder(num)
-    print(results)
     print( f"The factors of {num} are... "+', '.join(results))
