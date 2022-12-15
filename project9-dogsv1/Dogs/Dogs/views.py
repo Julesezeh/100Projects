@@ -41,4 +41,6 @@ def dog_details(name):
 
 
 def index(request):
-    pass
+    all_dogs = get_all_dogs()
+    dawg = {'values':all_dogs}
+    return render(request,'index.html',context=dawg)
