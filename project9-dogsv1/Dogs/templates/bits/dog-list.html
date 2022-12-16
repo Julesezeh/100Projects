@@ -1,5 +1,14 @@
-<ul style="">
-    {% for x in values %}
-    <li>{{x}}</li>
-    {% endfor %}
-</ul>
+
+<div class="form-group">
+    <form action="#" method="post" style="color: burlywood;">
+        {% csrf_token %}
+        <select class="form-select" aria-label="Default select example" name="breed">
+        <option selected value="#">{{value}}</option>
+        {% for x in values %}
+        <option value="#">{{x}}</option>
+        {% endfor %}
+        </select>
+        <br>
+        <button class="button-18" role="button" type="submit">search</button>
+    </form>
+</div>
