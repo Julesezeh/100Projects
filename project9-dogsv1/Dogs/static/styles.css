@@ -61,6 +61,8 @@ h1{
     background-color: rgba(0, 0, 0, 0.856);
     text-align: center;
     font-family: 'Ubuntu';
+    width: 90%;
+    padding-right: 20px;
 }
 h3{
   background-color: rgba(0, 0, 0, 0.699);

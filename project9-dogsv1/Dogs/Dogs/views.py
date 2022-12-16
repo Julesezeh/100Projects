@@ -5,19 +5,6 @@ from django.http.response import HttpResponse, HttpResponsePermanentRedirect
 #Use list class-based view to list all the breeds
 
 
-"""
-SYNTAX FOR CALLING api-ninjas Dogs api
-
-name = 'golden retriever'
-api_url = 'https://api.api-ninjas.com/v1/dogs?name={}'.format(name)
-response = requests.get(api_url, headers={'X-Api-Key': 'YOUR_API_KEY'})
-if response.status_code == requests.codes.ok:
-    print(response.text)
-else:
-    print("Error:", response.status_code, response.text)
-
-"""
-
 #Function to get the names of all the dogs from the second api
 def get_all_dogs():        
     response1=requests.get("https://dog.ceo/api/breeds/list/all")    
@@ -32,15 +19,35 @@ def get_all_dogs():
 	
     return all_dogs
 
+'''
+def get_details(dog_name):
+    #API from api-ninjas
+    api_url = f"https://api.api-ninjas.com/v1/dogs?name={dog_name}"
+    response = requests.get(api_url, headers={'X-Api-Key': 'YOUR_API_KEY'})
+    if response.status_code == requests.codes.ok:
+        print(response.text)    
+    else:
+        print("Error:", response.status_code, response.text)
+'''
 
-
-def dog_details(name):
+def get_details(name):
+    #API from api-ninjas
     api_url = api_url = f"https://api.api-ninjas.com/v1/dogs?name={name}"
     api_key = "SVfDH3VKQs52MpR67uDxxQ==uG1EROv2Mzcrhwvn"
     response = requests.get(api_url,headers={"X-Api-Key": api_key})
+    if response.status_code == requests.codes.ok:
+        print(response.text)    
+    else:
+        print("Error:", response.status_code, response.text)
 
 
 def index(request):
     all_dogs = get_all_dogs()
     dawg = {'values':all_dogs[1:],'value':all_dogs[0] }
     return render(request,'index.html',context=dawg)
+
+
+def details(request):
+    gotten_name = request.POST.get('breed')
+    simba = get_details(gotten_name)
+    return HttpResponse("<div>Slimeee</div>")
