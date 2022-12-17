@@ -1,34 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!--<h3 style="color:wheat;" class="second"> The Sub breeds are:</h3>-->
 <br>
-<br>
-<br>
-<br>
+<!--What particular {parent_name}-->
 <div class="row">
-    <div class="col-4">
-        <i><h1 id="first" style="font-size:2em;">Please select a specific breed: </h1></i>
-
-        <div class="form-group">
-            <form action="#" method="post" style="color: burlywood;">
-                {% csrf_token %}
-                <select class="form-select bg-dark" style="color:wheat;" aria-label="Default select example" name="breed">
-                <option selected value="{{fir.0}}">{{fir.0}}</option>
-                {% for x in sub %}
-                <option value="{{x.0}}">{{x.0}}</option>
-                {% endfor %}
-                </select>
-                <br>
-                <button class="button-18" role="button" type="submit">Woof!</button>
-            </form>
-        </div>
-        
+    {% for x in sub %}
+    <div class="col-6" style="color:wheat;">
+       <h3 style="background-color:rgba(0, 0, 0, 0.87); height:80%; text-align: center;">{{x.0}}</h3>
     </div>
+    <div class="col-6">
+        <img src="{{x.1}}" style="width:40%; padding-top: 15px;" alt="Image">
+        <br>
+    </div>
+
+    {% endfor %}
     
-    <div class="col-2"> <!--Just some separation--></div>
-
-    <div class="col-6" id="image">
-        <img src="{{fir.1}}" style="width: 60%;" alt="default">
-    </div>
 </div>
 {% endblock %}
