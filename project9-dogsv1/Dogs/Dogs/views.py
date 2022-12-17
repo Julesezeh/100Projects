@@ -48,7 +48,7 @@ def details(request):
         sub_breeds = []
         for x in simba:
             sub_breeds.append([x['name'],x['image_link']])
-        return render(request,'sub_breed_page.html',context={'sub':sub_breeds,})
+        return render(request,'sub_breed_page.html',context={'sub':sub_breeds[1:],'fir':sub_breeds[0]})
     else:
         all_keys = simba.keys()
         photo=simba['image_link']
