@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--<h3 style="color:wheat;" class="second"> The Sub breeds are:</h3>-->
+<br>
+<!--What particular {parent_name}-->
+<div class="row">
+    {% for x in sub %}
+    <div class="col-6" style="color:wheat;">
+       <h3 style="background-color:rgba(0, 0, 0, 0.87); height:80%; text-align: center;">{{x.0}}</h3>
+    </div>
+    <div class="col-6">
+        <img src="{{x.1}}" style="width:40%; padding-top: 15px;" alt="Image">
+        <br>
+    </div>
+
+    {% endfor %}
+    
+</div>
+{% endblock %}

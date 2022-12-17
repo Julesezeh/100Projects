@@ -7,10 +7,10 @@
 <div class="row">
     {% for x in sub %}
     <div class="col-6" style="color:wheat;">
-       <h3 style="background-color:rgba(0, 0, 0, 0.87); height:80%; text-align: center;">{{x.0}}</h3>
+      <a style="text-decoration:none; color:wheat;" href="{% url 'specifics' x.0 %}"><h3 style=" padding-top:35px; margin-top:35px; cursor: pointer; background-color:rgba(0, 0, 0, 0.87); width:80%; height:70%; text-align: center;">{{x.0}}</h3></a>
     </div>
     <div class="col-6">
-        <img src="{{x.1}}" style="width:40%; padding-top: 15px;" alt="Image">
+        <a href="{% url 'specifics' x.0 %}"><img src="{{x.1}}" style="width:40%; padding-top: 15px; cursor: pointer;" alt="Image"></a>
         <br>
     </div>
 

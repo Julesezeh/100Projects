@@ -44,16 +44,29 @@ def index(request):
 
 
 def details(request):
-    if request.method == 'POST':
-        gotten_name = request.POST.get('breed')
-        simba = get_details(gotten_name)
-        if len(simba)>1:
-            sub_breeds = []
-            for x in simba:
-                sub_breeds.append([x['name'],x['image_link']])
-            return render(request,'sub_breed_page.html',context={'sub':sub_breeds[1:],'fir':sub_breeds[0]})
-        else:
-            all_keys = simba.keys()
-            photo=simba['image_link']
-            return render(request,'results.html',context={'keys':all_keys,'pic':photo,})
+    gotten_name = request.POST.get('breed')
+    simba = get_details(gotten_name)
+    if len(simba)>1:
+        sub_breeds = []
+        for x in simba:
+            sub_breeds.append([x['name'],x['image_link']])
+        return render(request,'sub_breed_page.html',context={'sub':sub_breeds,})
+    else:
+        all_keys = simba[0]
+        #remove debugging item below
+        print("nosirskii")
+        print(all_keys)
+        print("yessirski")
+        photo=simba[0]['image_link']
+        name = simba[0]['name']
+        return render(request,'results.html',context={'keys':all_keys,'pic':photo,'name':name,})
+
+def specifics(request,name):
+    simba = get_details(name)
+    print("This is simba")
+    print(simba)
+    print("Yes")
+    all_keys = simba[0].keys()
+    photo=simba[0]['image_link']
+    return render(request,'results.html',context={'keys':all_keys,'pic':photo,'name':name,})
 
