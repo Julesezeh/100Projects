@@ -1,12 +1,12 @@
 body,html{
     height:100%;
-    background-image: url(20221216_14.jpg);
-    background-size: 1400px;
-    background-color: rgb(135, 222, 161);
+    background-repeat: no-repeat;
+    background-image: url(dogg2.png);
+    background-color: rgb(161, 207, 204);
 }
 .button-18 {
     align-items: center;
-    background-color:beige;
+    background-color:black;
     border: 0;
     border-radius: 100px;
     box-sizing: border-box;
@@ -55,7 +55,7 @@ body,html{
     max-height: 200px;
     overflow-x: hidden;
 }
-h1{
+#first{
     color: burlywood;
     font-size:5em;
     background-color: rgba(0, 0, 0, 0.856);
@@ -64,7 +64,7 @@ h1{
     width: 90%;
     padding-right: 20px;
 }
-h3{
+.second{
   background-color: rgba(0, 0, 0, 0.699);
   font-family: 'Ubuntu';
   text-align: center;

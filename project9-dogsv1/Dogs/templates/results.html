@@ -2,11 +2,21 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-6" style="background-color:black;">
+            <!--Details on the dog (on the right)-->
+            {% if keys %}
+                {% for x in keys %}
+                    <h2 style="color:beige;">{{x}}</h2>
+                {% endfor %}
+
+            {% else %}
+                <h2>Hello</h2>
+            {% endif %}
+        </div>
+        
         <div class="col-6">
             <!--The picture of the dog (on the left)-->
-        </div>
-        <div class="col-6">
-            <!--Details on the dog (on the right)-->
+            <img src="{{pic}}" alt="">
         </div>
 
     </div>

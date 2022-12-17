@@ -2,7 +2,7 @@
 <div class="form-group">
     <form action="{% url 'details' %}" method="post" style="color: burlywood;">
         {% csrf_token %}
-        <select class="form-select" aria-label="Default select example" name="breed">
+        <select class="form-select bg-dark" style="color:wheat;" aria-label="Default select example" name="breed">
         <option selected value="{{value}}">{{value}}</option>
         {% for x in values %}
         <option value="{{x}}">{{x}}</option>

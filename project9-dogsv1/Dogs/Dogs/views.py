@@ -6,29 +6,23 @@ from django.http.response import HttpResponse, HttpResponsePermanentRedirect
 
 
 #Function to get the names of all the dogs from the second api
+
+                
 def get_all_dogs():        
+    #will be tweaked to return just the parent breeds in cases of sub breeds
     response1=requests.get("https://dog.ceo/api/breeds/list/all")    
     items = response1.json()
     all_dogs = []
+    sub_breeds = []
     for x in items['message'].items():
         if len(x[1])>0:
+            all_dogs.append(f"{x[0]}")
             for y in x[1]:
-                all_dogs.append(f"{y} {x[0]}")
+                sub_breeds.append(f"{y}")
         else:
             all_dogs.append(f"{x[0]}")
-	
     return all_dogs
 
-'''
-def get_details(dog_name):
-    #API from api-ninjas
-    api_url = f"https://api.api-ninjas.com/v1/dogs?name={dog_name}"
-    response = requests.get(api_url, headers={'X-Api-Key': 'YOUR_API_KEY'})
-    if response.status_code == requests.codes.ok:
-        print(response.text)    
-    else:
-        print("Error:", response.status_code, response.text)
-'''
 
 def get_details(name):
     #API from api-ninjas
@@ -39,7 +33,7 @@ def get_details(name):
         print(response.text)    
     else:
         print("Error:", response.status_code, response.text)
-
+    return response.json()
 
 def index(request):
     all_dogs = get_all_dogs()
@@ -50,4 +44,15 @@ def index(request):
 def details(request):
     gotten_name = request.POST.get('breed')
     simba = get_details(gotten_name)
-    return HttpResponse("<div>Slimeee</div>")
+    if len(simba)>1:
+        sub_breeds = []
+        for x in simba:
+            sub_breeds.append([x['name'],x['image_link']])
+        return render(request,'sub_breed_page.html',context={'sub':sub_breeds,})
+    else:
+        all_keys = simba.keys()
+        photo=simba['image_link']
+        return render(request,'results.html',context={'keys':all_keys,'pic':photo,})
+
+def specific(request):
+    gotten_name = request.POST.get('specific')
