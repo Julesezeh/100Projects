@@ -2,26 +2,26 @@
 
 {% block content %}
 <br>
-    <h2 id="first"  style="font-size:3em;">{{name}}</h2>
+    <h2 id="first"  style="font-size:3em;">{{keys.name}}</h2>
     <div class="row">
         <div class="col-6">
             <!--The picture of the dog (on the left)-->
-            <img src="{{pic}}" alt="">
+            <img style="width:40%" src="{{keys.image_link}}" alt="">
         </div>
 
         <div class="col-6" style="background-color:rgba(0, 0, 0, 0.884);">
             <!--Details on the dog (on the right)-->
             {% if keys %}
             <!--This should return values for a custom dict that has custom values based on the main api's data-->
-                <h2 id="first"style='font-size:1.5em'>{{keys.name}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.good_with_children}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.good_with_other_dogs}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.shedding}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.grooming}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.drooling}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.coat_length}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.protectiveness}}</h2>
-                <h2 id="first"style='font-size:1.5em'>{{keys.energy}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Name: {{keys.name}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Life-span: {{keys.life_span}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Trainability: {{keys.trainability_level}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Growth: {{keys.growth}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Weight: {{keys.weight}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Shedding: {{keys.shedding}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Barking: {{keys.barking}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Protectiveness: {{keys.protective}}</h2>
+                <h2 id="first"style='font-size:1.5em'>Energy: {{keys.energy}}</h2>
 
                 {% else %}
                 <h2>Hello</h2>

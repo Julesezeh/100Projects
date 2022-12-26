@@ -1,6 +1,6 @@
 import requests
 from django.shortcuts import render
-from django.http.response import HttpResponse, HttpResponsePermanentRedirect
+from description import description
 
 #Use list class-based view to list all the breeds
 
@@ -26,7 +26,7 @@ def get_all_dogs():
 
 def get_details(name):
     #API from api-ninjas
-    api_url = api_url = f"https://api.api-ninjas.com/v1/dogs?name={name}"
+    api_url = f"https://api.api-ninjas.com/v1/dogs?name={name}"
     api_key = "SVfDH3VKQs52MpR67uDxxQ==uG1EROv2Mzcrhwvn"
     response = requests.get(api_url,headers={"X-Api-Key": api_key})
     
@@ -44,22 +44,19 @@ def index(request):
 
 
 def details(request):
-    gotten_name = request.POST.get('breed')
-    simba = get_details(gotten_name)
-    if len(simba)>1:
-        sub_breeds = []
-        for x in simba:
-            sub_breeds.append([x['name'],x['image_link']])
-        return render(request,'sub_breed_page.html',context={'sub':sub_breeds,})
-    else:
-        all_keys = simba[0]
-        #remove debugging item below
-        print("nosirskii")
-        print(all_keys)
-        print("yessirski")
-        photo=simba[0]['image_link']
-        name = simba[0]['name']
-        return render(request,'results.html',context={'keys':all_keys,'pic':photo,'name':name,})
+    if request.method == 'POST':
+        gotten_name = request.POST.get('breed')
+        simba = get_details(gotten_name)
+        if len(simba)>1:
+            sub_breeds = []
+            for x in simba:
+                sub_breeds.append([x['name'],x['image_link']])
+            return render(request,'sub_breed_page.html',context={'sub':sub_breeds,})
+        else:
+            simba = simba[0]
+            holder = description(simba)
+            return render(request,'results.html',context={'keys':holder,})
+
 
 def specifics(request,name):
     simba = get_details(name)
