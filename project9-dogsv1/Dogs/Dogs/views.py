@@ -29,12 +29,12 @@ def get_details(name):
     api_url = f"https://api.api-ninjas.com/v1/dogs?name={name}"
     api_key = "SVfDH3VKQs52MpR67uDxxQ==uG1EROv2Mzcrhwvn"
     response = requests.get(api_url,headers={"X-Api-Key": api_key})
-    
+    '''
     if response.status_code == requests.codes.ok:
         print(response.text)    
     else:
         print("Error:", response.status_code, response.text)
-
+    '''
     return response.json()
 
 def index(request):
@@ -42,10 +42,16 @@ def index(request):
     dawg = {'values':all_dogs[1:],'value':all_dogs[0] }
     return render(request,'index.html',context=dawg)
 
+def specifics(request,name):
+    details = get_details(name)
+    details = details[0]
+    holder = description(details)
+    return render(request,'results.html',context={'keys':holder})
+
 
 def details(request):
     if request.method == 'POST':
-        gotten_name = request.POST.get('breed')
+        gotten_name = request.POST.get('breed') 
         simba = get_details(gotten_name)
         if len(simba)>1:
             sub_breeds = []
@@ -56,14 +62,10 @@ def details(request):
             simba = simba[0]
             holder = description(simba)
             return render(request,'results.html',context={'keys':holder,})
-
-
-def specifics(request,name):
-    simba = get_details(name)
-    print("This is simba")
-    print(simba)
-    print("Yes")
-    all_keys = simba[0].keys()
-    photo=simba[0]['image_link']
-    return render(request,'results.html',context={'keys':all_keys,'pic':photo,'name':name,})
+    elif request.method == 'GET':
+        gotten_name = request.POST.get('breed')
+        simba = get_details(gotten_name)
+        simba = simba[0]
+        holder = description(simba)
+        return render(request,'results.html',context={'keys':holder,})
 

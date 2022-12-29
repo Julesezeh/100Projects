@@ -83,7 +83,7 @@ def description(json_response):
     
     min_life_span = int(json_response['min_life_expectancy'])
     max_life_span = int(json_response['min_life_expectancy'])
-    span = f"Generlly live {min_life_span} to {max_life_span} years"
+    span = f"Can live up to {max_life_span} years"
 
     energy_level = energy_switch(json_response['energy'])
     barking_level = barking_switch(json_response['barking'])
